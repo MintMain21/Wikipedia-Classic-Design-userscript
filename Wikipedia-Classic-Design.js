@@ -22,6 +22,7 @@ This userscript is based on https://github.com/MintMain21/Invidious-URL-Paramete
 It is designed to redirect wikipedia pages using the modern (2022) design to pages using a more classic design.
 By default, it redirects to a theme based on Wikipedia's appearence in 2008 (modern). Other themes are avalible based on designs from 2002 (cologneblue), 2010 (vector), etc. For more information, see https://en.wikipedia.org/wiki/Wikipedia:Skin
 To edit the enforced theme, change both (!url.includes("?useskin=[theme here]") and (window.location.replace(url + "?useskin=[theme here]").
+Anytime you load a wikipedia page, this script will check the URL for the desired parameters, and apply them if not found.
  */
 
 function getCurrentURL () {
