@@ -27,7 +27,7 @@ const url = getCurrentURL();
 (function() {
     'use strict';
 
-    if (url.includes("wikipedia.org") && !url.includes("?useskin=modern")) {
+    if (url.includes("en.wikipedia.org") && !url.includes("?useskin=modern")) {
         window.location.replace(url + "?useskin=modern");
     }
 })();
