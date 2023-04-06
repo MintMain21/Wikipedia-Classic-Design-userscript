@@ -4,7 +4,7 @@
 // @version      1
 // @description  Redirect Wikipedia to the classic design
 // @author       MintMain21
-// @match        *://*.wikipedia.org/*
+// @match        *://en.wikipedia.org/*
 // @grant        none
 // @license      MIT
 // ==/UserScript==
@@ -27,7 +27,7 @@ const url = getCurrentURL();
 (function() {
     'use strict';
 
-    if (url.includes("en.wikipedia.org") && !url.includes("?useskin=modern")) {
+    if (url.includes("*.wikipedia.org") && !url.includes("?useskin=modern")) {
         window.location.replace(url + "?useskin=modern");
     }
 })();
