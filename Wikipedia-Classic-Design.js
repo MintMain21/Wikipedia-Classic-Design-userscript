@@ -58,5 +58,3 @@ if(test(window.location.href)){window.location.assign(getNewPage(window.location
 window.onload = fixLinks;
 setInterval(fixLinks, 50);
 
-    }
-})();
