@@ -25,24 +25,38 @@ By default, it redirects to a theme based on Wikipedia's appearence in 2008 (mod
 To edit the enforced theme, change the skinchoice below. */
 
 
-let skinchoice = 'modern';
+const skinchoice = 'modern';
 
 
 /**Anytime you load a wikipedia page, this script will check the URL for the desired parameters, and apply them if not found. */
 
 
 
-function getCurrentURL () {
-  return window.location.href;
+function test(url){
+    return !url.includes(skinchoice);
 }
 
-// Example
-const url = getCurrentURL();
+function getNewPage(url){
+    var que = '?';
+    if(url.includes("?")){que = '&'};
+    return url.concat(que,"useskin=",skinchoice);
+}
 
-(function() {
-    'use strict';
+function fixLinks(){
+    var links = Array.prototype.slice.call(document.links, 0);
+    links.filter(function(link){
+        if(test(link.href)){
+            var greatNewLink = getNewPage(link.href);
+            if(link.hasAttribute('data-outbound-url')) link.setAttribute('data-outbound-url', greatNewLink);
+            link.setAttribute('href', greatNewLink);
+        }
+    });
+}
 
-    if (!url.includes("?useskin=" + skinchoice)) {
-        window.location.replace(url + "?useskin=" + skinchoice);
+if(test(window.location.href)){window.location.assign(getNewPage(window.location.href));}
+
+window.onload = fixLinks;
+setInterval(fixLinks, 50);
+
     }
 })();
