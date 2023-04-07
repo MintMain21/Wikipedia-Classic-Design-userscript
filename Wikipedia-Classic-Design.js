@@ -14,6 +14,7 @@
 // @match        *://fr.wikipedia.org/*
 // @match        *://zh.wikipedia.org/*
 // @match        *://pt.wikipedia.org/*
+// @match        *://*.m.wikipedia.org/*
 // @grant        none
 // @license      MIT
 // ==/UserScript==
