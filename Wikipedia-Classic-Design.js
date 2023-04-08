@@ -20,7 +20,7 @@
 // ==/UserScript==
 /**
 
-This userscript is based predominantly on https://greasyfork.org/en/scripts/458494-old-wikipedia-layout/code, as well as https://github.com/MintMain21/Invidious-URL-Parameters-Userscript.
+This userscript is based predominantly on https://greasyfork.org/en/scripts/458501-vector-layout-for-wikipedia/code, as well as https://github.com/MintMain21/Invidious-URL-Parameters-Userscript.
 It is designed to redirect wikipedia pages using the modern (2022) design to pages using a more classic design.
 By default, it redirects to a theme based on Wikipedia's appearence in 2008 (modern). Other themes are avalible based on designs from 2002 (cologneblue), 2010 (vector), etc. For more information, see https://en.wikipedia.org/wiki/Wikipedia:Skin
 To edit the enforced theme, change the skinchoice below. */
@@ -31,31 +31,34 @@ const skinchoice = 'modern';
 
 /**Anytime you load a wikipedia page, this script will check the URL for the desired parameters, and apply them if not found. */
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-function test(url){
-    return !url.includes(skinchoice);
-}
-
-function getNewPage(url){
-    var que = '?';
-    if(url.includes("?")){que = '&'};
-    return url.concat(que,"useskin=",skinchoice);
-}
-
-function fixLinks(){
-    var links = Array.prototype.slice.call(document.links, 0);
-    links.filter(function(link){
-        if(test(link.href)){
-            var greatNewLink = getNewPage(link.href);
-            if(link.hasAttribute('data-outbound-url')) link.setAttribute('data-outbound-url', greatNewLink);
-            link.setAttribute('href', greatNewLink);
+(function() {
+    'use strict';
+    if(window.location.href.includes("useskin=" + skinchoice)===false){
+        if(window.location.href.includes("?")){
+            if(window.location.href.includes("#")){
+                window.location.replace (window.location.href.substring(0, window.location.href.indexOf('#')) + ("?useskin=" + skinchoice) + window.location.href.substring(window.location.href.indexOf('#'),window.location.href.length));
+            }
+            else{
+                window.location.replace (window.location.href + ("&useskin=") + skinchoice);
+            }
         }
-    });
-}
+        else if(window.location.href.includes("#")){
+            window.location.replace (window.location.href.substring(0, window.location.href.indexOf('#')) + ("?useskin=" + skinchoice) + window.location.href.substring(window.location.href.indexOf('#'),window.location.href.length));
+        }
+        else{
+            window.location.replace (window.location.pathname + ("?useskin=" + skinchoice));
+        }
+    }
+        var wikipediaLinks = Array.from(document.links).filter(link => link.href.includes("wikipedia"));
+    for (var i = 0; i < wikipediaLinks.length; i++) {
+        if(wikipediaLinks[i].href.includes("?" && ! "?u")){
+            wikipediaLinks[i].href = wikipediaLinks[i].origin + wikipediaLinks[i].pathname + ("?useskin=" + skinchoice) + wikipediaLinks[i].hash
+        }
+        else{
+            wikipediaLinks[i].href = wikipediaLinks[i].origin + wikipediaLinks[i].pathname + ("?useskin=" + skinchoice) + wikipediaLinks[i].hash
+        }
+    }
 
-if(test(window.location.href)){window.location.assign(getNewPage(window.location.href));}
-
-window.onload = fixLinks;
-setInterval(fixLinks, 50);
-
+})();
