@@ -9,5 +9,6 @@ This script's functionality can also be recreated in [Redirector]() using the fo
 
  Redirect: `https://*.wikipedia.org/*`
  to: `https://$1.wikipedia.org/$2?useskin=modern`
+ Excluding: `https://*.wikipedia.org/*?useskin=modern`
  Example:`https://en.m.wikipedia.org/wiki/Beaver` to https://en.m.wikipedia.org/wiki/Beaver?useskin=modern
 
