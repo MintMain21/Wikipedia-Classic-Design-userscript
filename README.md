@@ -1,4 +1,9 @@
 # Wikipedia-Classic-Design-userscript
+
+![Greasy Fork](https://img.shields.io/greasyfork/v/463713-wikipedia-classic-design?style=flat-square)
+![Greasy Fork](https://img.shields.io/greasyfork/dt/463713-wikipedia-classic-design?style=flat-square)
+![GitHub](https://img.shields.io/github/license/MintMain21/Wikipedia-Classic-Design-userscript?style=flat-square) 
+
 A userscript for enforcing a classic Wikipedia design
 
 Avalible to install on [Greasyfork](https://greasyfork.org/en/scripts/463713-wikipedia-classic-design)
