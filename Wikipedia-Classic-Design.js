@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Wikipedia Classic Design
 // @namespace    http://tampermonkey.net/
-// @version      2
+// @version      3
 // @description  Redirect Wikipedia to the classic design
 // @author       MintMain21
 // @match        *://en.wikipedia.org/*
@@ -53,12 +53,11 @@ const skinchoice = 'modern';
     }
         var wikipediaLinks = Array.from(document.links).filter(link => link.href.includes("wikipedia"));
     for (var i = 0; i < wikipediaLinks.length; i++) {
-        if(wikipediaLinks[i].href.includes("?" && ! "?u")){
-            wikipediaLinks[i].href = wikipediaLinks[i].origin + wikipediaLinks[i].pathname + ("?useskin=" + skinchoice) + wikipediaLinks[i].hash
+        if(wikipediaLinks[i].href.includes("?") && !wikipediaLinks[i].href.includes("#") && !wikipediaLinks[i].href.includes("?u")){
+            wikipediaLinks[i].href = wikipediaLinks[i].href + ("&useskin=" + skinchoice)
         }
-        else{
-            wikipediaLinks[i].href = wikipediaLinks[i].origin + wikipediaLinks[i].pathname + ("?useskin=" + skinchoice) + wikipediaLinks[i].hash
+        else if(!wikipediaLinks[i].href.includes("?") && !wikipediaLinks[i].href.includes("#") && !wikipediaLinks[i].href.includes("?u")){
+            wikipediaLinks[i].href = wikipediaLinks[i].href + ("?useskin=" + skinchoice)
         }
     }
-
 })();
