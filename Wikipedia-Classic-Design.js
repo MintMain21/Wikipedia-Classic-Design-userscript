@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Wikipedia Classic Design
 // @namespace    http://tampermonkey.net/
-// @version      4
+// @version      5
 // @description  Redirect Wikipedia to the classic design
 // @author       MintMain21
 // @match        *://en.wikipedia.org/*
@@ -15,6 +15,7 @@
 // @match        *://zh.wikipedia.org/*
 // @match        *://pt.wikipedia.org/*
 // @match        *://*.m.wikipedia.org/*
+// @match        *://simple.wikipedia.org/*
 // @grant        none
 // @license      MIT
 // ==/UserScript==
